@@ -3,53 +3,55 @@ package com.example;
 public class Main {
 
     public static void main(String[] args) {
+        System.out.println("Productos:");
 
-        Product product01 = new Product();
-        Product product02 = new Product();
-        Product product03 = new Product();
-        Product product04 = new Product();
-        Product product05 = new Product();
+        //Producto[] products = new Producto[5];
 
-        Double totalPrice;
-        Double average;
-        Double maxPrice;
+        //Crear 5 productos
+        Product product1 = new Product("Aperitivos", "Aceitunas", "Verdes sin Hueso"
+                , 1.49);
+        Product product2 = new Product("Aperitivos","Aceitunas","Verdes manzanilla con anchoas"
+                , 0.84);
+        Product product3 = new Product("Aperitivos","Aceitunas","Rellena de anchoas"
+                , 3.24);
+        Product product4 = new Product("Aperitivos","Aceitunas","Rellena anchoa suave"
+                , 1.40);
+        Product product5 = new Product("Aperitivos","Aceitunas","Negra sin hueso"
+                , 0.89);
 
-        Product[] products = { product01, product02, product03, product04, product05 };
+        //Crear un array de productos
+        Product[] arrayDeProductos = new Product[]{product1,product2,product3,product4,product5};
 
-        totalPrice = calculateTotalPrice(products);
-        System.out.println(totalPrice);
+        System.out.println(product1);
+        System.out.println(product2);
+        System.out.println(product3);
+        System.out.println(product4);
+        System.out.println(product5);
 
-        average = calculateAveragePrice(products);
-        System.out.println(average);
-
-        maxPrice = getMaxPrice(products);
-        System.out.println(maxPrice);
-
-    }
-
-    public static Double calculateTotalPrice(Product[] products) {
-        Double total = 0.0d;
-
-        for (Product i : products) {
-            total += i.getPrice();
+        //Estadísticas
+        //Calcular la suma precio total de los productos del array
+        Double totalCost = 0d;
+        for (Product product : arrayDeProductos) {
+            totalCost += product.getCost();
         }
-        return total;
-    }
+        System.out.println("Estadísticas:");
+        System.out.println("Suma del precio total de los productos:"+totalCost);
 
-    public static Double calculateAveragePrice(Product[] products) {
-        Double sum;
+        //Calcular la media de precio de los productos del array
+        double averageCost = totalCost / arrayDeProductos.length;
+        System.out.println("La media de precio de los productos: " + averageCost);
 
-        sum = calculateTotalPrice(products);
-        return sum/products.length;
-    }
-
-    public static Double getMaxPrice(Product[] products) {
-        Double max = 0.0d;
-
-        for (Product i : products) {
-            max = Math.max(max, i.getPrice());
+        //Calcular el precio máximo
+        Double maxCost = arrayDeProductos[0].getCost();
+        for (Product arrayDeProducto : arrayDeProductos) {
+            if (arrayDeProducto.getCost() > maxCost) {
+                maxCost = arrayDeProducto.getCost();
+            }
         }
-        return max;
+        System.out.println("El precio máximo: " + maxCost);
     }
+
 }
+
+
 
